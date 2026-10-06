@@ -1,6 +1,6 @@
 # Sistemas DAQ y Control
 
-Colección de proyectos de adquisición de datos y control con microcontroladores. Publicada en GitHub (repositorio `Sistemas-DAQ-Control`, público, licencia MIT) como portafolio profesional. Es un solo repositorio con una carpeta por proyecto.
+Colección de proyectos de adquisición de datos y control con microcontroladores. Publicada en GitHub (repositorio `SolKacil-Sistemas-DAQ-Control`, público, licencia MIT) como portafolio profesional. Es un solo repositorio con una carpeta por proyecto.
 
 ## Objetivo
 - Proyectos **didácticos pero aplicables a entornos reales**: código claro y explicado, sin sacrificar robustez.
