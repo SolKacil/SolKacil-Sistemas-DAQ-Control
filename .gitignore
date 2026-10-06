@@ -1,0 +1,18 @@
+# Arduino / compilacion
+build/
+*.bin
+*.elf
+*.hex
+
+# LabVIEW
+*.aliases
+*.lvlps
+.cache/
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Claude Code (configuracion local)
+.claude/
