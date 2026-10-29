@@ -13,12 +13,14 @@ Colección de proyectos de adquisición de datos y control con microcontroladore
 | `DS18B20_1` | Lectura básica de un DS18B20 con ESP32 por monitor serie (usa `delay`) |
 | `MAX6675_1` | Termopar tipo K con MAX6675 (SPI por software) por Monitor y Serial Plotter (usa `delay`) |
 | `DS18B20_2_WiFi_LabVIEW` | ESP32 como punto de acceso WiFi + servidor TCP; LabVIEW como cliente grafica la temperatura |
+| `DHT22_1_WiFi_LabVIEW` | DHT22 (temperatura y humedad) por WiFi a LabVIEW; dos valores por trama `temp,hum\r\n` |
+| `Simulacion_1_CSV_LabVIEW` | Solo LabVIEW: sensor de temperatura simulado (base + ruido) que guarda cada muestra en un CSV (`FechaHora,Temperatura_C`) |
 
 Actualizar esta tabla y la del `README.md` de la raíz al agregar proyectos.
 
 ## Convenciones
-- **Plataforma:** ESP32 con Arduino IDE (archivos `.ino`; la carpeta y el `.ino` llevan el mismo nombre).
-- **Nombres de carpeta:** `<SENSOR>_<n>_<Tema>`; `<n>` cuenta los proyectos de ese sensor. El orden de la ruta de aprendizaje lo marca la tabla del README raíz.
+- **Plataforma:** ESP32 con Arduino IDE (archivos `.ino`; la carpeta y el `.ino` llevan el mismo nombre). Los proyectos de simulación son solo LabVIEW y no llevan `.ino`.
+- **Nombres de carpeta:** `<SENSOR>_<n>_<Tema>`; `<n>` cuenta los proyectos de ese sensor (los proyectos sin hardware usan `Simulacion` en lugar del sensor). El orden de la ruta de aprendizaje lo marca la tabla del README raíz.
 - **Idioma:** comentarios, nombres de variables y documentación en español.
 - **Estilo de código:** sencillo y legible, comentarios breves que expliquen el *porqué*. Partir del código del proyecto anterior para que se note la evolución.
 - **Temporización:** los proyectos básicos de lectura por serie pueden usar `delay()`; desde que hay comunicación (WiFi, etc.) usar `millis()`.

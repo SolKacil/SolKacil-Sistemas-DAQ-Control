@@ -55,8 +55,7 @@ void loop() {
 
     // Envia el dato como texto terminado en \r\n, ej. "24.56\r\n"
     if (cliente && cliente.connected()) {
-      cliente.print(temp, 2);
-      cliente.print("\r\n");
+      cliente.printf("%.2f\r\n", temp);
     }
   }
 }

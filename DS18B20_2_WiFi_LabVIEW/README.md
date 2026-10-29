@@ -10,7 +10,7 @@ Lectura de un sensor de temperatura DS18B20 con ESP32 y envío de los datos a La
 | Archivo | Descripción |
 |---|---|
 | `DS18B20_2_WiFi_LabVIEW.ino` | Programa de la ESP32 (Arduino IDE) |
-| `MonitorTemperatura.vi` | Cliente TCP en LabVIEW que muestra y grafica la temperatura |
+| `MonitorTemperaturaDS18B20.vi` | Cliente TCP en LabVIEW que muestra y grafica la temperatura |
 | `Interfaz.png` / `DiagramaBloques.png` | Capturas del panel frontal y del diagrama de bloques |
 
 ## Material
@@ -45,7 +45,7 @@ Librerías de Arduino: `OneWire` y `DallasTemperature`. `WiFi.h` viene incluida 
 1. `TCP Open Connection`: address = `Dirección IP`, remote port = `Puerto`, timeout = `5000` ms.
 2. `While Loop` con:
    - `TCP Read`: mode = **CRLF**, bytes to read = **20**.
-   - `Fract/Exp String To Number` (String » Number/String Conversion): convierte el texto a número.
+   - `Fract/Exp String To Number` (String » Number/String Conversion): convierte el texto a número. Conectar una constante **False** a `use system decimal point` para que siempre use el punto (`.`) como separador decimal, sin importar la configuración regional de Windows.
    - El número va al indicador y al Waveform Chart.
    - Condición de paro: `OR` entre el botón STOP y el `status` del error (Unbundle By Name).
    - El connection ID y el error pasan por shift registers.
@@ -56,13 +56,14 @@ No se necesita Wait dentro del lazo: `TCP Read` espera a recibir la línea compl
 ## Uso
 1. Cargar el sketch en la ESP32 y abrir el monitor serie (115200 baudios).
 2. Conectar la PC a la red `ESP32_DAQ` (la PC no tendrá internet mientras esté conectada).
-3. Abrir `MonitorTemperatura.vi`, verificar la IP `192.168.4.1` y el puerto `5000`, y ejecutarlo.
+3. Abrir `MonitorTemperaturaDS18B20.vi`, verificar la IP `192.168.4.1` y el puerto `5000`, y ejecutarlo.
 4. En el monitor serie debe aparecer `LabVIEW conectado`.
 
 ## Solución de problemas
 | Síntoma | Causa / solución |
 |---|---|
 | LabVIEW muestra 0 y no hay error | `bytes to read` de `TCP Read` sin conectar o en 0: lee al instante un texto vacío. Conectar una constante de 20. |
+| La temperatura sale truncada (24 en vez de 24.56) o en 0 | Windows usa coma como separador decimal y `Fract/Exp String To Number` corta en el punto. Conectar **False** a `use system decimal point`. |
 | Error 56 (timeout) | `TCP Read` no está en modo CRLF, o la ESP32 no envía datos. |
 | Error 63 (conexión rechazada) | IP o puerto incorrectos, o la ESP32 apagada. |
 | Error 66 (conexión cerrada) | La ESP32 se reinició o se desconectó. |
